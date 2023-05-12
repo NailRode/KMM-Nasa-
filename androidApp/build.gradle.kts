@@ -62,4 +62,9 @@ dependencies {
         implementation(materialIcons)
         implementation(activity)
     }
+
+    with(Dependencies.Coroutines) {
+        implementation(android)
+        testImplementation(test)
+    }
 }

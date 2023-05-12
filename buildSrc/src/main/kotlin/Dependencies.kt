@@ -25,6 +25,7 @@ object Versions {
     const val napier = "2.6.1"
     const val junit5 = "1.5.10"
     const val buildKonfig = "0.13.3"
+    const val ktor = "2.3.0"
 
     object Serialization {
         const val plugin = "1.8.10"
@@ -44,10 +45,16 @@ object Dependencies {
     const val androidViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModel}"
 
     object Koin {
-        const val core = "io.insert-koin:koin-core:${Versions.koin}"
+        const val common = "io.insert-koin:koin-core:${Versions.koin}"
         const val android = "io.insert-koin:koin-android:${Versions.koin}"
         const val androidCompose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
         const val test = "io.insert-koin:koin-test:${Versions.koin}"
+    }
+
+    object Ktor {
+        const val common = "io.ktor:ktor-client-core:${Versions.ktor}"
+        const val android = "io.ktor:ktor-client-okhttp:${Versions.ktor}"
+        const val ios = "io.ktor:ktor-client-darwin:${Versions.ktor}"
     }
 
     object Compose {

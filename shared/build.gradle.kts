@@ -30,9 +30,11 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(Dependencies.Koin.core)
+                implementation(Dependencies.Koin.common)
                 implementation(Dependencies.JetBrains.datetime)
                 implementation(Dependencies.JetBrains.serializationJson)
+                implementation(Dependencies.Ktor.common)
+                implementation(Dependencies.Coroutines.common)
             }
         }
         val commonTest by getting {
@@ -44,6 +46,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(Dependencies.androidViewModel)
+                implementation(Dependencies.Ktor.android)
             }
         }
         val androidUnitTest by getting
@@ -55,6 +58,9 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                implementation(Dependencies.Ktor.ios)
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting
