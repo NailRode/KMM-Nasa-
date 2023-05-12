@@ -1,6 +1,10 @@
+import com.codingfeline.buildkonfig.compiler.FieldSpec
+import java.util.Properties
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("com.codingfeline.buildkonfig").version(Versions.buildKonfig)
 }
 
 kotlin {
@@ -57,5 +61,15 @@ android {
     compileSdk = Versions.compileSdk
     defaultConfig {
         minSdk = Versions.minSdk
+    }
+}
+
+buildkonfig {
+    packageName = "de.nailrode.kmm.nasa"
+
+    val localProperties = Properties()
+    localProperties.load(file("${project.rootDir}/local.properties").inputStream())
+    defaultConfigs {
+        buildConfigField(FieldSpec.Type.STRING, "NASA_API_KEY", localProperties.getProperty("nasa_api_key"))
     }
 }

@@ -23,6 +23,8 @@ object Versions {
     const val activityCompose = "1.7.0"
     const val napier = "2.6.1"
     const val junit5 = "1.5.10"
+    const val buildKonfig = "0.13.3"
+
     const val frameworkName = "shared"
 }
 
