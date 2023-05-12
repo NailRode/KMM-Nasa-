@@ -5,6 +5,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("com.codingfeline.buildkonfig").version(Versions.buildKonfig)
+    kotlin("plugin.serialization").version(Versions.Serialization.plugin)
 }
 
 kotlin {
@@ -27,13 +28,24 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(Dependencies.Koin.core)
+                implementation(Dependencies.JetBrains.datetime)
+                implementation(Dependencies.JetBrains.serializationJson)
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(Dependencies.Koin.test)
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation(Dependencies.androidViewModel)
+            }
+        }
         val androidUnitTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting

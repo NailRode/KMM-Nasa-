@@ -45,6 +45,10 @@ dependencies {
         implementation(napier)
         implementation(material)
     }
+    with(Dependencies.Koin) {
+        implementation(android)
+        implementation(androidCompose)
+    }
 
     with(Dependencies.Compose) {
         implementation(compiler)

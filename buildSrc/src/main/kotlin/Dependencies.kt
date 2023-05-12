@@ -3,7 +3,6 @@ const val androidApp = "com.android.application"
 const val androidLib = "com.android.library"
 const val multiplatform = "multiplatform"
 const val composePlugin = "org.jetbrains.compose"
-const val cocoapods = "native.cocoapods"
 
 object Versions {
     const val minSdk = 24
@@ -12,6 +11,7 @@ object Versions {
 
     // Plugins
     const val kotlin = "1.8.10"
+    const val koin = "3.2.0"
     const val kotlinGradlePlugin = "1.8.10"
     const val androidGradlePlugin = "8.0.1"
     const val composeCompilerVersion = "1.4.4"
@@ -21,9 +21,15 @@ object Versions {
     const val materialDesign = "1.4.0"
     const val kotlinxDateTime = "0.4.0"
     const val activityCompose = "1.7.0"
+    const val viewModel = "2.6.1"
     const val napier = "2.6.1"
     const val junit5 = "1.5.10"
     const val buildKonfig = "0.13.3"
+
+    object Serialization {
+        const val plugin = "1.8.10"
+        const val json = "1.5.1"
+    }
 
     const val frameworkName = "shared"
 }
@@ -35,6 +41,14 @@ object Dependencies {
     const val junit = "junit:junit:${Versions.jUnit}"
     const val material = "com.google.android.material:material:${Versions.materialDesign}"
     const val napier = "io.github.aakira:napier:${Versions.napier}"
+    const val androidViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModel}"
+
+    object Koin {
+        const val core = "io.insert-koin:koin-core:${Versions.koin}"
+        const val android = "io.insert-koin:koin-android:${Versions.koin}"
+        const val androidCompose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
+        const val test = "io.insert-koin:koin-test:${Versions.koin}"
+    }
 
     object Compose {
         const val ui = "androidx.compose.ui:ui:${Versions.composeVersion}"
@@ -58,5 +72,6 @@ object Dependencies {
 
     object JetBrains {
         const val datetime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDateTime}"
+        const val serializationJson = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.Serialization.json}"
     }
 }
