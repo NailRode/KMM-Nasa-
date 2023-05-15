@@ -11,10 +11,10 @@ class NasaApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        initKoin {
+        initKoin(viewModelsModule = appModule) {
             androidLogger()
             androidContext(this@NasaApp)
-            modules(appModule)
+            // modules(appModule)
         }
     }
 }

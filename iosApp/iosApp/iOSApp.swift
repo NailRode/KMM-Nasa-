@@ -6,7 +6,7 @@ import KMMViewModelSwiftUI
 @main
 struct iOSApp: App {
     
-    @StateViewModel var viewModel = ApodViewModel()
+    @StateViewModel var viewModel: ApodViewModel = Koin.instance.get()
     
     
     init() {
@@ -22,11 +22,11 @@ struct iOSApp: App {
                 endPoint: .bottomTrailing
             )
          
-            Text(viewModel.apod.title)
+            Text(viewModel.apod?.title ?? "")
                 .font(.system(size: 30))
                 .foregroundColor(.clear)
                 .overlay(
-                    Text(viewModel.apod.title)
+                    Text(viewModel.apod?.title ?? "")
                         .font(.system(size: 30))
                         .foregroundColor(.white)
                         .background(gradient)

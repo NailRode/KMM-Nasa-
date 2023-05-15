@@ -1,10 +1,3 @@
-//
-//  Koin.swift
-//  iosApp
-//
-//  Created by Rode, Nail Emil on 12.05.23.
-//  Copyright © 2023 orgName. All rights reserved.
-//
 import shared
 
 final class Koin {
@@ -14,7 +7,7 @@ final class Koin {
 
   static func start() {
     if instance.core == nil {
-      let app = KoinIOS.shared.initialize()
+        let app = KoinCommonKt.doInitKoin()
       instance.core = app.koin
     }
     if instance.core == nil {
