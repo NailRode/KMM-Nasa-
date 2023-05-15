@@ -9,14 +9,19 @@ object Versions {
     const val targetSdk = 33
     const val compileSdk = 33
 
-    // Plugins
-    const val kotlin = "1.8.10"
-    const val koin = "3.2.0"
-    const val kotlinGradlePlugin = "1.8.10"
+    object Koin {
+        const val core = "3.4.0"
+        const val android = "3.4.0"
+        const val androidCompose = "3.4.4"
+    }
+
+    const val kotlinGradlePlugin = "1.8.21"
     const val androidGradlePlugin = "8.0.1"
-    const val composeCompilerVersion = "1.4.4"
-    const val composeVersion = "1.4.3"
-    const val coroutines = "1.5.0-native-mt"
+    const val kspPlugin = "1.8.21-1.0.11"
+    const val composeCompilerVersion = "1.4.7"
+    const val composeVersion = "1.5.0-alpha04"
+    const val coroutines = "1.7.1"
+    const val kmpNativeCoroutines = "1.0.0-ALPHA-9"
     const val jUnit = "4.13.2"
     const val materialDesign = "1.4.0"
     const val kotlinxDateTime = "0.4.0"
@@ -26,6 +31,7 @@ object Versions {
     const val junit5 = "1.5.10"
     const val buildKonfig = "0.13.3"
     const val ktor = "2.3.0"
+    const val kmmViewModel = "1.0.0-ALPHA-9"
 
     object Serialization {
         const val plugin = "1.8.10"
@@ -43,18 +49,22 @@ object Dependencies {
     const val material = "com.google.android.material:material:${Versions.materialDesign}"
     const val napier = "io.github.aakira:napier:${Versions.napier}"
     const val androidViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModel}"
+    const val kmmViewModel = "com.rickclephas.kmm:kmm-viewmodel-core:${Versions.kmmViewModel}"
 
     object Koin {
-        const val common = "io.insert-koin:koin-core:${Versions.koin}"
-        const val android = "io.insert-koin:koin-android:${Versions.koin}"
-        const val androidCompose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
-        const val test = "io.insert-koin:koin-test:${Versions.koin}"
+        const val common = "io.insert-koin:koin-core:${Versions.Koin.core}"
+        const val android = "io.insert-koin:koin-android:${Versions.Koin.android}"
+        const val androidCompose = "io.insert-koin:koin-androidx-compose:${Versions.Koin.androidCompose}"
+        const val test = "io.insert-koin:koin-test:${Versions.Koin.core}"
     }
 
     object Ktor {
         const val common = "io.ktor:ktor-client-core:${Versions.ktor}"
+        const val serialization = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
+        const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
         const val android = "io.ktor:ktor-client-okhttp:${Versions.ktor}"
         const val ios = "io.ktor:ktor-client-darwin:${Versions.ktor}"
+        const val logging = "io.ktor:ktor-client-logging:${Versions.ktor}"
     }
 
     object Compose {
@@ -65,7 +75,7 @@ object Dependencies {
         const val material = "androidx.compose.material:material:${Versions.composeVersion}"
         const val materialIcons = "androidx.compose.material:material-icons-extended:${Versions.composeVersion}"
         const val runtime = "androidx.compose.runtime:runtime:${Versions.composeVersion}"
-        const val compiler = "androidx.compose.compiler:compiler:${Versions.composeVersion}"
+        const val compiler = "androidx.compose.compiler:compiler:${Versions.composeCompilerVersion}"
         const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:${Versions.composeVersion}"
         const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.composeVersion}"
         const val activity = "androidx.activity:activity-compose:${Versions.activityCompose}"

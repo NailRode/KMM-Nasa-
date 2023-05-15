@@ -1,13 +1,18 @@
 import SwiftUI
+import shared
+import KMMViewModelCore
+import KMMViewModelSwiftUI
 
 @main
 struct iOSApp: App {
     
-    @StateObject private var viewModelWrapper = ApodViewModelWrapper()
+    @StateViewModel var viewModel = ApodViewModel()
     
-    init(){
+    
+    init() {
         Koin.start()
     }
+    
     
 	var body: some Scene {
 		WindowGroup {
@@ -17,11 +22,11 @@ struct iOSApp: App {
                 endPoint: .bottomTrailing
             )
          
-            Text(viewModelWrapper.apod?.title ?? "")
+            Text(viewModel.apod.title)
                 .font(.system(size: 30))
                 .foregroundColor(.clear)
                 .overlay(
-                    Text(viewModelWrapper.apod?.title ?? "")
+                    Text(viewModel.apod.title)
                         .font(.system(size: 30))
                         .foregroundColor(.white)
                         .background(gradient)

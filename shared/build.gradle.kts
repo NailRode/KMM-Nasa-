@@ -4,6 +4,8 @@ import java.util.Properties
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("com.google.devtools.ksp")
+    id("com.rickclephas.kmp.nativecoroutines").version(Versions.kmpNativeCoroutines)
     id("com.codingfeline.buildkonfig").version(Versions.buildKonfig)
     kotlin("plugin.serialization").version(Versions.Serialization.plugin)
 }
@@ -30,11 +32,16 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(Dependencies.napier)
                 implementation(Dependencies.Koin.common)
                 implementation(Dependencies.JetBrains.datetime)
                 implementation(Dependencies.JetBrains.serializationJson)
                 implementation(Dependencies.Ktor.common)
+                implementation(Dependencies.Ktor.serialization)
+                implementation(Dependencies.Ktor.contentNegotiation)
+                implementation(Dependencies.Ktor.logging)
                 implementation(Dependencies.Coroutines.common)
+                implementation(Dependencies.kmmViewModel)
             }
         }
         val commonTest by getting {
@@ -72,6 +79,10 @@ kotlin {
             iosSimulatorArm64Test.dependsOn(this)
         }
     }
+}
+
+kotlin.sourceSets.all {
+    languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
 }
 
 android {

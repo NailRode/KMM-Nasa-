@@ -44,8 +44,10 @@ dependencies {
     with(Dependencies) {
         implementation(napier)
         implementation(material)
+        implementation(kmmViewModel)
     }
     with(Dependencies.Koin) {
+        implementation(common)
         implementation(android)
         implementation(androidCompose)
     }
