@@ -3,30 +3,33 @@ import java.util.Properties
 
 plugins {
     kotlin("multiplatform")
+    kotlin("native.cocoapods")
+    kotlin("plugin.serialization")
     id("com.android.library")
+    id("org.jetbrains.compose")
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines").version(Versions.kmpNativeCoroutines)
     id("com.codingfeline.buildkonfig").version(Versions.buildKonfig)
-    kotlin("plugin.serialization").version(Versions.Serialization.plugin)
 }
 
 kotlin {
-    android {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
-    }
+    android()
 
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64(),
-    ).forEach {
-        it.binaries.framework {
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+
+    cocoapods {
+        version = "1.0.0"
+        summary = "Some description for the Shared Module"
+        homepage = "Link to the Shared Module homepage"
+        ios.deploymentTarget = "14.1"
+        podfile = project.file("../iosApp/Podfile")
+        framework {
             baseName = "shared"
+            isStatic = true
         }
+        extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
     }
 
     sourceSets {
@@ -36,12 +39,23 @@ kotlin {
                 implementation(Dependencies.Koin.common)
                 implementation(Dependencies.JetBrains.datetime)
                 implementation(Dependencies.JetBrains.serializationJson)
-                implementation(Dependencies.Ktor.common)
-                implementation(Dependencies.Ktor.serialization)
-                implementation(Dependencies.Ktor.contentNegotiation)
-                implementation(Dependencies.Ktor.logging)
                 implementation(Dependencies.Coroutines.common)
                 implementation(Dependencies.kmmViewModel)
+
+                with(Dependencies.Ktor) {
+                    implementation(common)
+                    implementation(serialization)
+                    implementation(contentNegotiation)
+                    implementation(logging)
+                }
+
+                with(compose) {
+                    implementation(runtime)
+                    implementation(foundation)
+                    implementation(material)
+                    @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+                    implementation(components.resources)
+                }
             }
         }
         val commonTest by getting {
@@ -52,6 +66,11 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                api("androidx.activity:activity-compose:1.6.1")
+                api("androidx.appcompat:appcompat:1.6.1")
+                api("androidx.core:core-ktx:1.9.0")
+                implementation(Dependencies.Koin.android)
+                implementation(Dependencies.Koin.androidCompose)
                 implementation(Dependencies.androidViewModel)
                 implementation(Dependencies.Ktor.android)
             }
@@ -88,8 +107,23 @@ kotlin.sourceSets.all {
 android {
     namespace = "de.nailrode.kmm.nasa"
     compileSdk = Versions.compileSdk
+
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    sourceSets["main"].res.srcDirs("src/androidMain/res")
+    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
+
     defaultConfig {
         minSdk = Versions.minSdk
+        targetSdk = Versions.targetSdk
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlin {
+        jvmToolchain(11)
     }
 }
 

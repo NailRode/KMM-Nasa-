@@ -1,11 +1,32 @@
 plugins {
+    kotlin("multiplatform")
     id("com.android.application")
-    kotlin("android")
+    id("org.jetbrains.compose")
+}
+
+kotlin {
+    android()
+    sourceSets {
+        val androidMain by getting {
+            dependencies {
+                implementation(project(":shared"))
+                implementation(Dependencies.kmmViewModel)
+                with(Dependencies.Koin) {
+                    implementation(common)
+                    implementation(android)
+                    implementation(androidCompose)
+                }
+            }
+        }
+    }
 }
 
 android {
-    namespace = "de.nailrode.kmm.nasa.android"
     compileSdk = Versions.compileSdk
+    namespace = "de.nailrode.kmm.nasa.android"
+
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+
     defaultConfig {
         applicationId = "de.nailrode.kmm.nasa.android"
         minSdk = Versions.minSdk
@@ -13,60 +34,12 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompilerVersion
-    }
-    packagingOptions {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-
-dependencies {
-    implementation(project(":shared"))
-
-    with(Dependencies) {
-        implementation(napier)
-        implementation(material)
-        implementation(kmmViewModel)
-    }
-    with(Dependencies.Koin) {
-        implementation(common)
-        implementation(android)
-        implementation(androidCompose)
-    }
-
-    with(Dependencies.Compose) {
-        implementation(compiler)
-        implementation(runtime)
-        implementation(runtimeLivedata)
-        implementation(ui)
-        implementation(tooling)
-        implementation(foundation)
-        implementation(foundationLayout)
-        implementation(material)
-        implementation(materialIcons)
-        implementation(activity)
-    }
-
-    with(Dependencies.Coroutines) {
-        implementation(android)
-        testImplementation(test)
+    kotlin {
+        jvmToolchain(11)
     }
 }

@@ -1,11 +1,12 @@
 plugins {
     // trick: for the same plugin versions in all sub-modules
-    id("com.android.application").version(Versions.androidGradlePlugin).apply(false)
-    id("com.android.library").version(Versions.androidGradlePlugin).apply(false)
-    id("com.google.devtools.ksp").version(Versions.kspPlugin).apply(false)
-    kotlin("android").version(Versions.kotlinGradlePlugin).apply(false)
-    kotlin("multiplatform").version(Versions.kotlinGradlePlugin).apply(false)
-    kotlin("plugin.serialization").version(Versions.Serialization.plugin)
+    id("com.android.application").apply(false)
+    id("com.android.library").apply(false)
+    id("com.google.devtools.ksp").apply(false)
+    kotlin("android").apply(false)
+    kotlin("multiplatform").apply(false)
+    kotlin("plugin.serialization").apply(false)
+    id("org.jetbrains.compose").apply(false)
 }
 
 tasks.register("clean", Delete::class) {

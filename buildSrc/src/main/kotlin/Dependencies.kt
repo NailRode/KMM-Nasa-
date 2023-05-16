@@ -15,10 +15,7 @@ object Versions {
         const val androidCompose = "3.4.4"
     }
 
-    const val kotlinGradlePlugin = "1.8.21"
-    const val androidGradlePlugin = "8.0.1"
-    const val kspPlugin = "1.8.21-1.0.11"
-    const val composeCompilerVersion = "1.4.7"
+    const val composeCompilerVersion = "1.4.6"
     const val composeVersion = "1.5.0-alpha04"
     const val coroutines = "1.7.1"
     const val kmpNativeCoroutines = "1.0.0-ALPHA-9"
@@ -34,7 +31,6 @@ object Versions {
     const val kmmViewModel = "1.0.0-ALPHA-9"
 
     object Serialization {
-        const val plugin = "1.8.10"
         const val json = "1.5.1"
     }
 
@@ -42,9 +38,6 @@ object Versions {
 }
 
 object Dependencies {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
-    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinGradlePlugin}"
-
     const val junit = "junit:junit:${Versions.jUnit}"
     const val material = "com.google.android.material:material:${Versions.materialDesign}"
     const val napier = "io.github.aakira:napier:${Versions.napier}"

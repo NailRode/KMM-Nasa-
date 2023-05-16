@@ -1,4 +1,4 @@
-package de.nailrode.kmm.nasa.android
+package de.nailrode.kmm.nasa.ui
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
