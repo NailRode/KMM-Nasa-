@@ -8,6 +8,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.compose")
     id("com.google.devtools.ksp")
+    id("kotlin-parcelize")
     id("com.rickclephas.kmp.nativecoroutines").version(Versions.kmpNativeCoroutines)
     id("com.codingfeline.buildkonfig").version(Versions.buildKonfig)
 }
@@ -28,6 +29,11 @@ kotlin {
         framework {
             baseName = "shared"
             isStatic = true
+            /**
+             * To use Decompose on iOS, it needs to be exported
+             */
+            export(Dependencies.Decompose.decompose)
+            export(Dependencies.essenty)
         }
         extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
     }
@@ -41,6 +47,7 @@ kotlin {
                 implementation(Dependencies.JetBrains.serializationJson)
                 implementation(Dependencies.Coroutines.common)
                 implementation(Dependencies.kmmViewModel)
+                implementation(Dependencies.imageLoader)
 
                 with(Dependencies.Ktor) {
                     implementation(common)
@@ -49,12 +56,18 @@ kotlin {
                     implementation(logging)
                 }
 
+                implementation(Dependencies.essenty)
+                with(Dependencies.Decompose) {
+                    api(decompose)
+                    api(jetbrainsComposeExtensions)
+                }
+
                 with(compose) {
-                    implementation(runtime)
-                    implementation(foundation)
-                    implementation(material)
+                    api(runtime)
+                    api(foundation)
+                    api(material)
                     @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-                    implementation(components.resources)
+                    api(components.resources)
                 }
             }
         }

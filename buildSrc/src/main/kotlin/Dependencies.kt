@@ -1,23 +1,8 @@
-const val androidPlugin = "android"
-const val androidApp = "com.android.application"
-const val androidLib = "com.android.library"
-const val multiplatform = "multiplatform"
-const val composePlugin = "org.jetbrains.compose"
-
 object Versions {
     const val minSdk = 24
     const val targetSdk = 33
     const val compileSdk = 33
 
-    object Koin {
-        const val core = "3.4.0"
-        const val android = "3.4.0"
-        const val androidCompose = "3.4.4"
-    }
-
-    const val composeCompilerVersion = "1.4.6"
-    const val composeVersion = "1.5.0-alpha04"
-    const val coroutines = "1.7.1"
     const val kmpNativeCoroutines = "1.0.0-ALPHA-9"
     const val jUnit = "4.13.2"
     const val materialDesign = "1.4.0"
@@ -27,8 +12,9 @@ object Versions {
     const val napier = "2.6.1"
     const val junit5 = "1.5.10"
     const val buildKonfig = "0.13.3"
-    const val ktor = "2.3.0"
     const val kmmViewModel = "1.0.0-ALPHA-9"
+    const val imageLoader = "1.4.2"
+    const val essenty = "1.1.0"
 
     object Serialization {
         const val json = "1.5.1"
@@ -43,41 +29,43 @@ object Dependencies {
     const val napier = "io.github.aakira:napier:${Versions.napier}"
     const val androidViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModel}"
     const val kmmViewModel = "com.rickclephas.kmm:kmm-viewmodel-core:${Versions.kmmViewModel}"
+    const val imageLoader = "io.github.qdsfdhvh:image-loader:${Versions.imageLoader}"
+    const val essenty = "com.arkivanov.essenty:lifecycle:${Versions.essenty}"
+
+    object Decompose {
+        private const val VERSION = "1.0.0-compose-experimental"
+        const val decompose = "com.arkivanov.decompose:decompose:$VERSION"
+        const val jetbrainsComposeExtensions = "com.arkivanov.decompose:extensions-compose-jetbrains:$VERSION"
+    }
 
     object Koin {
-        const val common = "io.insert-koin:koin-core:${Versions.Koin.core}"
-        const val android = "io.insert-koin:koin-android:${Versions.Koin.android}"
-        const val androidCompose = "io.insert-koin:koin-androidx-compose:${Versions.Koin.androidCompose}"
-        const val test = "io.insert-koin:koin-test:${Versions.Koin.core}"
+        private const val VERSION = "3.4.0"
+        private const val ANDROID_VERSION = "3.4.0"
+        private const val COMPOSE_VERSION = "3.4.4"
+
+        const val common = "io.insert-koin:koin-core:$VERSION"
+        const val android = "io.insert-koin:koin-android:$ANDROID_VERSION"
+        const val androidCompose = "io.insert-koin:koin-androidx-compose:$COMPOSE_VERSION"
+        const val test = "io.insert-koin:koin-test:$VERSION"
     }
 
     object Ktor {
-        const val common = "io.ktor:ktor-client-core:${Versions.ktor}"
-        const val serialization = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
-        const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
-        const val android = "io.ktor:ktor-client-okhttp:${Versions.ktor}"
-        const val ios = "io.ktor:ktor-client-darwin:${Versions.ktor}"
-        const val logging = "io.ktor:ktor-client-logging:${Versions.ktor}"
-    }
+        private const val VERSION = "2.3.0"
 
-    object Compose {
-        const val ui = "androidx.compose.ui:ui:${Versions.composeVersion}"
-        const val uiUtil = "androidx.compose.ui:ui-util:${Versions.composeVersion}"
-        const val tooling = "androidx.compose.ui:ui-tooling:${Versions.composeVersion}"
-        const val foundation = "androidx.compose.foundation:foundation:${Versions.composeVersion}"
-        const val material = "androidx.compose.material:material:${Versions.composeVersion}"
-        const val materialIcons = "androidx.compose.material:material-icons-extended:${Versions.composeVersion}"
-        const val runtime = "androidx.compose.runtime:runtime:${Versions.composeVersion}"
-        const val compiler = "androidx.compose.compiler:compiler:${Versions.composeCompilerVersion}"
-        const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:${Versions.composeVersion}"
-        const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.composeVersion}"
-        const val activity = "androidx.activity:activity-compose:${Versions.activityCompose}"
+        const val common = "io.ktor:ktor-client-core:$VERSION"
+        const val serialization = "io.ktor:ktor-serialization-kotlinx-json:$VERSION"
+        const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:$VERSION"
+        const val android = "io.ktor:ktor-client-okhttp:$VERSION"
+        const val ios = "io.ktor:ktor-client-darwin:$VERSION"
+        const val logging = "io.ktor:ktor-client-logging:$VERSION"
     }
 
     object Coroutines {
-        const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
-        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
-        const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
+        private const val VERSION = "1.7.1"
+
+        const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$VERSION"
+        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$VERSION"
+        const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$VERSION"
     }
 
     object JetBrains {

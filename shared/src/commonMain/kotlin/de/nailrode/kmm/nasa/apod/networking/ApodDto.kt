@@ -5,8 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ApodDto(
-    val title: String? = null,
-    val date: LocalDate? = null,
-    val url: String? = null,
-    val explanation: String? = null,
+    val title: String,
+    val date: LocalDate,
+    val url: String,
+    val explanation: String,
 )
