@@ -1,4 +1,4 @@
-package de.nailrode.kmm.nasa.ui
+package de.nailrode.kmm.nasa.ui.apods
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

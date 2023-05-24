@@ -5,16 +5,17 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import de.nailrode.kmm.nasa.apod.presentation.ApodViewModel
+import de.nailrode.kmm.nasa.root.RootComponent
+import de.nailrode.kmm.nasa.root.RootContent
 
 @Composable()
-fun App(viewModel: ApodViewModel) {
+fun App(component: RootComponent) {
     NasaTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = Color(0xFF18122B),
         ) {
-            ApodsScreen(viewModel)
+            RootContent(component)
         }
     }
 }

@@ -28,7 +28,6 @@ object Dependencies {
     const val material = "com.google.android.material:material:${Versions.materialDesign}"
     const val napier = "io.github.aakira:napier:${Versions.napier}"
     const val androidViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModel}"
-    const val kmmViewModel = "com.rickclephas.kmm:kmm-viewmodel-core:${Versions.kmmViewModel}"
     const val imageLoader = "io.github.qdsfdhvh:image-loader:${Versions.imageLoader}"
     const val essenty = "com.arkivanov.essenty:lifecycle:${Versions.essenty}"
 

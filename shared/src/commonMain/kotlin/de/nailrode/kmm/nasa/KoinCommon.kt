@@ -2,7 +2,6 @@ package de.nailrode.kmm.nasa
 
 import de.nailrode.kmm.nasa.apod.networking.ApodApi
 import de.nailrode.kmm.nasa.apod.networking.ApodApiImpl
-import de.nailrode.kmm.nasa.apod.presentation.ApodViewModel
 import de.nailrode.kmm.nasa.apod.repository.ApodRepository
 import de.nailrode.kmm.nasa.apod.repository.ApodRepositoryImpl
 import io.github.aakira.napier.DebugAntilog
@@ -22,17 +21,11 @@ import org.koin.dsl.module
 
 expect fun platformModule(): Module
 
-private fun viewModelsModule() = module {
-    factory { ApodViewModel(get()) }
-}
-
-fun initKoin(
-    viewModelsModule: Module = viewModelsModule(),
-    appDeclaration: KoinAppDeclaration = {},
-): KoinApplication = startKoin {
-    modules(commonModule(), viewModelsModule)
-    appDeclaration()
-}
+fun initKoin(appDeclaration: KoinAppDeclaration = {}): KoinApplication =
+    startKoin {
+        modules(commonModule())
+        appDeclaration()
+    }
 
 // called by iOS client
 fun initKoin(): KoinApplication = initKoin() {}

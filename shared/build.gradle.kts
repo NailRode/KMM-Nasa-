@@ -46,7 +46,6 @@ kotlin {
                 implementation(Dependencies.JetBrains.datetime)
                 implementation(Dependencies.JetBrains.serializationJson)
                 implementation(Dependencies.Coroutines.common)
-                implementation(Dependencies.kmmViewModel)
                 implementation(Dependencies.imageLoader)
 
                 with(Dependencies.Ktor) {

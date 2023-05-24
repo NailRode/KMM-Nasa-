@@ -10,7 +10,6 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(project(":shared"))
-                implementation(Dependencies.kmmViewModel)
                 with(Dependencies.Koin) {
                     implementation(common)
                     implementation(android)
